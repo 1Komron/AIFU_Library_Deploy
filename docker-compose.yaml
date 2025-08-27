@@ -37,7 +37,7 @@ services:
   
   reader:
     build:
-      context: ./reader
+      context: ./uhf-reader
     container_name: uhf-reader
     ports:
       - "8082:8082"
