@@ -41,6 +41,8 @@ services:
     container_name: uhf-reader
     ports:
       - "8082:8082"
+      - "8085:8085"
+      - "8086:8086"
     depends_on:
       postgres:
         condition: service_healthy
