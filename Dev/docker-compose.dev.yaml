@@ -6,19 +6,18 @@ services:
       context: ./migration
     container_name: migration_service
     ports:
-      - "8183:8083"
-    depends_on:
-      postgres:
-        condition: service_healthy
+      - "8183:8183"
 
   web:
     build:
       context: ./web
     container_name: library_web
     ports:
-      - "8180:8080"
-    depends_on:
-      postgres:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
+      - "8180:8180"
+
+  bot:
+    build:
+      context: ./bot
+    container_name: telegram_bot
+    ports:
+      - "8181:8181"
