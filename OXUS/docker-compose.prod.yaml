@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  migration:
+    build:
+      context: ./migration
+    container_name: migration_service
+    ports:
+      - "8093:8093"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ./web
+    container_name: library_web
+    ports:
+      - "8090:8090"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  bot:
+    build:
+      context: ./bot
+    container_name: telegram_bot
+    ports:
+      - "8091:8091"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  reader:
+    build:
+      context: ./uhf-reader
+    container_name: uhf-reader
+    ports:
+      - "8092:8092"
+      - "8095:8095"
+      - "8096:8096"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+ 
