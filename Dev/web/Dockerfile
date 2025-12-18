@@ -9,6 +9,6 @@ RUN apt-get update && apt-get install -y \
     fontconfig \
     && rm -rf /var/lib/apt/lists/*
 
-EXPOSE 8180
+EXPOSE 9080
 
 ENTRYPOINT ["java", "-jar", "app-web.jar"]
